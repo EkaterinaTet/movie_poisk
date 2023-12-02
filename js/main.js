@@ -29,7 +29,6 @@ function getRating(rate) {
   }
 }
 
-//проверка рейтинга на %
 function checkRating(el) {
   if (el.at(-1) == "%") {
     let num = parseFloat(el) / 10;
@@ -38,14 +37,14 @@ function checkRating(el) {
     return el;
   }
 }
-//проверка на null
+
 function checkRatingNull(el) {
-  if (!el) {
+  if (el == null || el == "null") {
     return "";
   }
   return el;
 }
-//проверка фильма на название и описание
+
 function checkMovie(el) {
   if (el == undefined || el == null) {
     return "-";

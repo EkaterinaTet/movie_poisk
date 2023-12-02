@@ -92,6 +92,11 @@ body {
   color: #fff;
   font-size: 14px;
 }
+
+.movie__average-none {
+  display: none;
+}
+
 .movie__average--green {
   background-color: green;
 }
