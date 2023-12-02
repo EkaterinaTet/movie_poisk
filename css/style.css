@@ -29,6 +29,9 @@ body {
   border-radius: 5px;
   outline: none;
 }
+.header__search:focus {
+  box-shadow: 7px 5px 5px rgb(129, 129, 129);
+}
 .movies {
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +45,10 @@ body {
 .movie__cover-inner {
   position: relative;
   height: 360px;
+}
+.movie__cover-inner:hover {
+  box-shadow: 5px 7px 7px rgb(129, 129, 129);
+  transition: box-shadow 0.5s ease;
 }
 .movie__cover {
   max-width: 100%;
@@ -71,30 +78,28 @@ body {
 }
 .movie__category {
   font-size: 14px;
-  color: #ffd90e;
+  color: #8659cf;
 }
 .movie__average {
   position: absolute;
   top: 10px;
   left: 10px;
-  border-radius: 50%;
   width: 36px;
   height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1a191f;
   color: #fff;
   font-size: 14px;
 }
 .movie__average--green {
-  border: 1px solid green;
+  background-color: green;
 }
 .movie__average--orange {
-  border: 1px solid orange;
+  background-color: orange;
 }
 .movie__average--red {
-  border: 1px solid red;
+  background-color: red;
 }
 .modal {
   display: none;
@@ -104,16 +109,12 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  background-color: rgb(12 6 6 / 96%);
   transition: width 2s;
 }
-.modal--show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .modal__card {
+  margin: 25% auto 10px;
   max-width: 600px;
   padding: 16px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
@@ -121,8 +122,13 @@ body {
   color: #fff;
   display: flex;
   flex-direction: column;
-  margin-top: auto;
 }
+.modal--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal__movie-backdrop {
   width: 200px;
   margin: 0 auto;
@@ -137,10 +143,7 @@ body {
   cursor: pointer;
 }
 .modal__movie-site {
-  color: #ffd80e;
-}
-ul li {
-  padding: 5px;
+  color: #8659cf;
 }
 .stop-scrolling {
   height: 100%;
@@ -149,4 +152,31 @@ ul li {
 .modal__movie-genre {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
+}
+@media (max-width: 630px) {
+  .modal__card {
+    margin: 81% auto 10px;
+  }
+}
+@media (max-width: 425px) {
+  .header__logo {
+    font-size: 25px;
+  }
+  h2 {
+    margin-left: 15px;
+  }
+  .modal__movie-title,
+  .modal__movie-release-year {
+    font-size: 18px;
+  }
+  .modal__card {
+    margin: 157% auto 10px;
+  }
+  .modal__movie-overview {
+    font-size: 14px;
+  }
+  .modal__movie-site {
+    font-size: 14px;
+  }
 }

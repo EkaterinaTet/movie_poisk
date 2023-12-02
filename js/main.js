@@ -14,18 +14,43 @@ async function getMovies(url) {
       "X-API-KEY": API_KEY,
     },
   });
+
   const respData = await resp.json();
   showMovies(respData);
 }
 
-function getClassByRate(vote) {
-  if (vote >= 7) {
+function getRating(rate) {
+  if (rate >= 7) {
     return "green";
-  } else if (vote > 5) {
+  } else if (rate > 5) {
     return "orange";
   } else {
     return "red";
   }
+}
+
+//проверка рейтинга на %
+function checkRating(el) {
+  if (el.at(-1) == "%") {
+    let num = parseFloat(el) / 10;
+    return num.toString();
+  } else {
+    return el;
+  }
+}
+//проверка на null
+function checkRatingNull(el) {
+  if (!el) {
+    return "";
+  }
+  return el;
+}
+//проверка фильма на название и описание
+function checkMovie(el) {
+  if (el == undefined || el == null) {
+    return "-";
+  }
+  return el;
 }
 
 function showMovies(data) {
@@ -46,20 +71,17 @@ function showMovies(data) {
     <div class="movie__cover--darkened"></div>
   </div>
   <div class="movie__info">
-    <div class="movie__title">${movie.nameRu}</div>
+    <div class="movie__title">${checkMovie(movie.nameRu)}</div>
     <div class="movie__category">${movie.genres.map(
       (genre) => ` ${genre.genre}`
     )}</div>
     ${
-      movie.rating &&
-      `
-    <div class="movie__average movie__average--${getClassByRate(
-      movie.rating
-    )}">${movie.rating}</div>
-    `
+      checkRatingNull(movie.rating) &&
+      `<div class="movie__average movie__average--${getRating(
+        checkRating(movie.rating)
+      )}">${checkRating(movie.rating)}</div>`
     }
-  </div>
-    `;
+  </div>`;
     movieEl.addEventListener("click", () => openModal(movie.filmId));
     moviesEl.appendChild(movieEl);
   });
@@ -78,7 +100,6 @@ form.addEventListener("submit", (e) => {
 //Modal
 const modalEl = document.querySelector(".modal");
 async function openModal(id) {
-  console.log(id);
   const resp = await fetch(API_URL_MOVIE_ID + id, {
     headers: {
       "Content-Type": "application/json",
@@ -89,29 +110,29 @@ async function openModal(id) {
 
   modalEl.classList.add("modal--show");
 
-  document.body.classList.add("stop-scrolling"); //убираем скролл при открытии поп-ап окна
+  document.body.classList.add("stop-scrolling"); //убираю скролл при открытии поп-ап окна
 
   modalEl.innerHTML = `
 <div class="modal__card">
  <img class="modal__movie-backdrop" src="${respData.posterUrl}" alt="">
  <h2>
-  <span class="modal__movie-title">${respData.nameRu},</span>
+  <span class="modal__movie-title">${checkMovie(respData.nameRu)},</span>
   <span class="modal__movie-release-year">${respData.year}</span>
  </h2>
  <ul class="modal__movie-info">
  <div class="loader"></div>
- <li class="modal__movie-genre">Жанр - ${respData.genres.map(
+ <li class="modal__movie-genre">Жанр :  ${respData.genres.map(
    (el) => `<span>${el.genre}</span>`
  )}</li>
  ${
    respData.filmLength
-     ? `<li class="modal__movie-runtime">${respData.filmLength} минут</li>`
+     ? `<li class="modal__movie-runtime">${respData.filmLength} мин</li>`
      : ""
  }
  <li>Сайт: <a class="modal__movie-site" href="${respData.webUrl}">${
     respData.webUrl
   }</a></li>
- <li class="modal__movie-overview">${respData.description}</li>
+ <li class="modal__movie-overview">${checkMovie(respData.description)}</li>
  </ul>
  <button type="button" class="modal__button-close">Закрыть</button>
 </div>
@@ -126,7 +147,6 @@ function closeModal() {
 }
 //закрытие поп-ап окна по щелчку на область рядом
 window.addEventListener("click", (e) => {
-  console.log(e.target);
   if (e.target === modalEl) {
     closeModal();
   }
