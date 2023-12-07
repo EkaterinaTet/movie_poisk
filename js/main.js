@@ -1,5 +1,4 @@
-import { API_KEY } from "../key.js";
-
+const API_KEY = "240ab21c-1ac0-48e0-8f78-b185ca581a79";
 const API_URL_TOP =
   "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1";
 const API_URL_SEARCH =
