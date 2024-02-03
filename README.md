@@ -1,17 +1,16 @@
-# Поиск фильмов movie_search
+# Search movies
 
-## Технологии
-
+## Tech stack:
 HTML
 CSS
 JavaScript
 API
 
-## Описание
+## Description
 
-- Использование API для получения информации по фильмам;
-- Реализация поиска фильмов;
-- Всплывающее поп-ап окно (с информацией о фильме и ссылке на него) при нажатии на определенный фильм;
-- Показ рейтинга фильмов;
+- Using the API to get movie information;
+- Implementation of movie search;
+- Pop-up window (with information about the film and a link to it);
+- Show movie ratings;
 
-## [Страница проекта на GitHubPages](https://ekaterinatet.github.io/movie_poisk/)
+## [Project page on GitHubPages](https://ekaterinatet.github.io/movie_poisk/)
