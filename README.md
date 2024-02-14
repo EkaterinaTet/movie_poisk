@@ -14,3 +14,8 @@ API
 - Show movie ratings;
 
 ## [Project page on GitHubPages](https://ekaterinatet.github.io/movie_poisk/)
+
+<p align="left">
+  <img width="400" height="600" src="https://github.com/EkaterinaTet/movie_poisk/blob/main/movie-poisk.png">
+  <img width="500" height="300" src="https://github.com/EkaterinaTet/movie_poisk/blob/main/film.png">
+</p>
